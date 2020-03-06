@@ -1,11 +1,15 @@
-export {convert}
 
 function simple(txt) {
     let mid = txt.replace(/ph/g, "f")
         .replace(/th/g, "z")
         .replace(/ou/g, "o")
         .replace(/ea/g, "e")
-        .replace(/w/g, "v");
+        .replace(/w/g, "v")
+        .replace(/Ph/g, "F")
+        .replace(/Th/g, "Z")
+        .replace(/Ou/g, "O")
+        .replace(/Ea/g, "E")
+        .replace(/W/g, "V")
     if (mid.endsWith("ed")) {
         let o = mid.slice(0, mid.length - 2)
         return (o + "d");
@@ -48,6 +52,13 @@ function ctosk(txt) {
                 x = x.substr(0, i - 1) + "s" + x.substr(i + 1, txt.length - 1);
             } else {
                 x = x.substr(0, i - 1) + "k" + x.substr(i + 1, txt.length - 1);
+            }
+        }
+        if (x[i] == "C") {
+            if ("eiy".includes(x[i + 1])) {
+                x = x.substr(0, i - 1) + "S" + x.substr(i + 1, txt.length - 1);
+            } else {
+                x = x.substr(0, i - 1) + "K" + x.substr(i + 1, txt.length - 1);
             }
         }
     }

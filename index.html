@@ -23,7 +23,12 @@
             .replace(/th/g, "z")
             .replace(/ou/g, "o")
             .replace(/ea/g, "e")
-            .replace(/w/g, "v");
+            .replace(/w/g, "v")
+            .replace(/Ph/g, "F")
+            .replace(/Th/g, "Z")
+            .replace(/Ou/g, "O")
+            .replace(/Ea/g, "E")
+            .replace(/W/g, "V")
         if (mid.endsWith("ed")) {
             let o = mid.slice(0, mid.length - 2)
             return (o + "d");
@@ -70,11 +75,18 @@
                     x = x.substr(0, i - 1) + "k" + x.substr(i + 1, txt.length - 1);
                 }
             }
+            if (x[i] == "C") {
+                if ("eiy".includes(x[i + 1])) {
+                    x = x.substr(0, i - 1) + "S" + x.substr(i + 1, txt.length - 1);
+                } else {
+                    x = x.substr(0, i - 1) + "K" + x.substr(i + 1, txt.length - 1);
+                }
+            }
         }
         return x;
     }
 
-    function euro(txt) {
+    export function euro(txt) {
         return rmdouble(
             shorten(
                 ctosk(
@@ -88,7 +100,7 @@
 
     function convert() {
         var text = document.getElementById("input-area").value.replace(/\n/g, '<br/>');
-        document.getElementById("output").innerHTML = euro(text);
+        document.getElementById("output").innerHTML = text;
     }
 </script>
 
